@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Idi UBC LTD</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <!-- Inter Font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/globals.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Animated Gradient Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.3;
+      z-index: -1;
+    }
+    
+    .blob-1 {
+      width: 300px;
+      height: 300px;
+      background-color: #6366f1;
+      top: 20%;
+      left: 10%;
+      animation: float 12s ease-in-out infinite;
+    }
+    
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background-color: #8b5cf6;
+      bottom: 20%;
+      right: 15%;
+      animation: float 12s ease-in-out infinite 2s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(20px, 30px) scale(1.1);
+      }
+      50% {
+        transform: translate(-20px, -30px) scale(0.9);
+      }
+      75% {
+        transform: translate(-30px, 20px) scale(1.05);
+      }
+    }
+    
+    /* Form-specific styles */
+    .form-group {
+      @apply mb-6;
+    }
+    
+    .form-group label {
+      @apply block text-sm font-medium mb-2;
+    }
+    
+    .form-control {
+      @apply input-glass w-full px-4 py-3 text-sm;
+    }
+    
+    .forgot-password {
+      @apply text-sm text-slate-400 hover:text-white transition duration-300;
+    }
+    
+    .social-login {
+      @apply flex items-center justify-center space-x-4 my-6;
+    }
+    
+    .social-btn {
+      @apply w-12 h-12 glass flex items-center justify-center rounded-xl hover:bg-white/10 transition-all duration-300;
+    }
+    
+    .terms-text {
+      @apply text-xs text-slate-400;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen relative overflow-x-hidden">
+  <!-- Animated Background Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- Include Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- Main Content -->
+  <main class="pt-24 pb-12 px-6 flex items-center justify-center">
+    <div class="container mx-auto max-w-md">
+      <div class="card-primary p-8">
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+            </svg>
+          </div>
+          <h1 class="text-2xl font-bold">Create Account</h1>
+          <p class="text-slate-300 mt-2">Join Idi UBC LTD to start designing your dream building</p>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="register-form" class="space-y-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" class="form-control" placeholder="John" required>
+            </div>
+
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" class="form-control" placeholder="Doe" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" class="form-control" placeholder="+234 XXX XXX XXXX" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="At least 8 characters" required>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your password" required>
+          </div>
+
+          <div class="flex items-start">
+            <input type="checkbox" id="terms" class="w-4 h-4 mt-1 text-indigo-600 rounded focus:ring-indigo-500" required>
+            <label for="terms" class="ml-2 text-sm text-slate-300 terms-text">
+              I agree to the <a href="#" class="text-indigo-400 hover:text-indigo-300">Terms of Service</a> and <a href="#" class="text-indigo-400 hover:text-indigo-300">Privacy Policy</a>. I understand that my data will be processed according to these terms.
+            </label>
+          </div>
+
+          <button type="submit" class="btn-glass btn-primary w-full py-3 font-medium transition-all duration-300">
+            Create Account
+          </button>
+        </form>
+
+        <!-- Social Registration -->
+        <div class="social-login">
+          <div class="w-full border-t border-white/20"></div>
+          <span class="text-sm text-slate-400 px-4">or register with</span>
+          <div class="w-full border-t border-white/20"></div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4">
+          <button class="social-btn">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#DB4437">
+              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.773-8.6-8.6s3.773-8.6 8.6-8.6c2.6 0 4.507 1.027 5.907 2.72l2.307-2.227C18.14 2.007 15.214 1 12.48 1 5.86 1 1 5.86 1 12.48s4.86 11.48 11.48 11.48c6.887 0 11.5-5.453 11.5-12.48 0-.967-.08-1.853-.253-2.667H12.48z"/>
+            </svg>
+          </button>
+          
+          <button class="social-btn">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#1877F2">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </button>
+          
+          <button class="social-btn">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#000000">
+              <path d="M12.326 10.018c-.628-.348-1.36-.53-2.107-.518-1.552.023-2.807 1.27-2.83 2.822-.015 1.05.738 1.935 1.77 2.123v5.092c0 .38.308.688.688.688a.688.688 0 0 0 .688-.688v-5.156c1.88-.22 3.31-1.88 3.31-3.78 0-1.09-.47-2.08-1.23-2.75M12 0C5.373 0 0 5.373 0 12c0 5.304 3.438 9.8 8.207 11.387.6.11.817-.26.817-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.082-.73.082-.73 1.205.085 1.838 1.237 1.838 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.419-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.382 1.235-3.22-.123-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.525 11.525 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.652.24 2.873.118 3.176.77.838 1.23 1.91 1.23 3.22 0 4.61-2.807 5.627-5.479 5.92.43.37.814 1.103.814 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.217.69.824.57C20.567 21.797 24 17.302 24 12c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Login Link -->
+        <div class="text-center mt-6 text-sm">
+          <p class="text-slate-300">Already have an account? <a href="login.html" class="text-indigo-400 hover:text-indigo-300 font-medium">Sign in</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Include Footer -->
+  <div id="footer-container"></div>
+
+  <script>
+    // Load Navbar and Footer
+    fetch('../components/Navbar.js')
+      .then(response => response.text())
+      .then(data => {
+        const script = document.createElement('script');
+        script.textContent = data;
+        document.head.appendChild(script);
+        
+        const navbarContainer = document.getElementById('navbar-container');
+        if (typeof renderNavbar === 'function') {
+          navbarContainer.appendChild(renderNavbar());
+        }
+      });
+
+    fetch('../components/Footer.js')
+      .then(response => response.text())
+      .then(data => {
+        const script = document.createElement('script');
+        script.textContent = data;
+        document.head.appendChild(script);
+        
+        const footerContainer = document.getElementById('footer-container');
+        if (typeof renderFooter === 'function') {
+          footerContainer.appendChild(renderFooter());
+        }
+      });
+
+    // Registration form submission
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const firstName = document.getElementById('first-name').value;
+      const lastName = document.getElementById('last-name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      
+      // Simple validation
+      if (!firstName || !lastName || !email || !phone || !password || !confirmPassword) {
+        alert('Please fill in all fields');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+      
+      if (password.length < 8) {
+        alert('Password must be at least 8 characters long');
+        return;
+      }
+      
+      // Simulate registration process
+      console.log('Registration attempt:', { firstName, lastName, email, phone });
+      
+      alert(`Registration successful!\nWelcome ${firstName} ${lastName}!\nYour account has been created successfully.`);
+      
+      // In a real app, this would send data to server and redirect
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

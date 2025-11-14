@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Content - Idi UBC LTD</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <!-- Inter Font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../css/globals.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Animated Gradient Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.3;
+      z-index: -1;
+    }
+    
+    .blob-1 {
+      width: 300px;
+      height: 300px;
+      background-color: #6366f1;
+      top: 20%;
+      left: 10%;
+      animation: float 12s ease-in-out infinite;
+    }
+    
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background-color: #8b5cf6;
+      bottom: 20%;
+      right: 15%;
+      animation: float 12s ease-in-out infinite 2s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(20px, 30px) scale(1.1);
+      }
+      50% {
+        transform: translate(-20px, -30px) scale(0.9);
+      }
+      75% {
+        transform: translate(-30px, 20px) scale(1.05);
+      }
+    }
+    
+    /* Sidebar styles */
+    .sidebar {
+      @apply w-64 bg-slate-800/50 glass min-h-screen fixed left-0 top-0 pt-20 transition-all duration-300;
+    }
+    
+    .sidebar-item {
+      @apply flex items-center space-x-3 px-6 py-3 text-slate-300 hover:bg-white/10 rounded-lg mx-4 mb-2 cursor-pointer transition-all duration-200;
+    }
+    
+    .sidebar-item.active {
+      @apply bg-white/10 text-white font-medium;
+    }
+    
+    .sidebar-icon {
+      @apply w-5 h-5;
+    }
+    
+    /* Main content */
+    .main-content {
+      @apply ml-64 p-6 min-h-screen;
+    }
+    
+    /* Tab styles */
+    .tab-button {
+      @apply px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200;
+    }
+    
+    .tab-button.active {
+      @apply bg-indigo-500 text-white;
+    }
+    
+    .tab-button.inactive {
+      @apply text-slate-300 hover:bg-white/10;
+    }
+    
+    /* Form styles */
+    .form-group {
+      @apply mb-6;
+    }
+    
+    .form-group label {
+      @apply block text-sm font-medium mb-2;
+    }
+    
+    .form-control {
+      @apply input-glass w-full px-4 py-3 text-sm;
+    }
+    
+    .textarea-control {
+      @apply input-glass w-full px-4 py-3 text-sm min-h-32;
+    }
+    
+    /* Toggle switch */
+    .toggle-switch {
+      @apply relative inline-block w-12 h-6;
+    }
+    
+    .toggle-switch input {
+      @apply opacity-0 w-0 h-0;
+    }
+    
+    .slider {
+      @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-slate-600 rounded-full transition-all duration-300;
+    }
+    
+    .slider:before {
+      @apply absolute content-[''] h-5 w-5 left-1 bottom-1 bg-white rounded-full transition-all duration-300;
+    }
+    
+    input:checked + .slider {
+      @apply bg-indigo-500;
+    }
+    
+    input:checked + .slider:before {
+      @apply transform translate-x-6;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen relative overflow-x-hidden">
+  <!-- Animated Background Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <nav class="mt-8">
+      <a href="../dashboard.html" class="sidebar-item">
+        <svg class="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      
+      <a href="site-content.html" class="sidebar-item active">
+        <svg class="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
+        <span>Site Content</span>
+      </a>
+      
+      <a href="materials.html" class="sidebar-item">
+        <svg class="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+        <span>Materials</span>
+      </a>
+      
+      <a href="templates.html" class="sidebar-item">
+        <svg class="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+        </svg>
+        <span>Templates</span>
+      </a>
+      
+      <a href="projects.html" class="sidebar-item">
+        <svg class="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
+        <span>Projects</span>
+      </a>
+      
+      <a href="testimonials.html" class="sidebar-item">
+        <svg class="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        <span>Testimonials</span>
+      </a>
+      
+      <a href="settings.html" class="sidebar-item">
+        <svg class="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>Settings</span>
+      </a>
+      
+      <a href="../../index.html" class="sidebar-item mt-8 text-red-400">
+        <svg class="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+        <span>View Site</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold">Site Content Management</h1>
+          <p class="text-slate-300 mt-1">Manage all content displayed on your website</p>
+        </div>
+        
+        <button class="btn-glass btn-primary px-6 py-2">
+          Save All Changes
+        </button>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <div class="flex space-x-1 mb-6 bg-slate-800/50 glass p-1 rounded-xl inline-flex">
+      <button class="tab-button active" data-tab="general">General</button>
+      <button class="tab-button inactive" data-tab="homepage">Homepage</button>
+      <button class="tab-button inactive" data-tab="about">About Page</button>
+      <button class="tab-button inactive" data-tab="contact">Contact Page</button>
+      <button class="tab-button inactive" data-tab="legal">Legal Pages</button>
+    </div>
+
+    <!-- General Content Tab -->
+    <div id="general-tab" class="tab-content">
+      <div class="glass p-6 rounded-2xl mb-6">
+        <h2 class="text-xl font-bold mb-6">General Site Settings</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="form-group">
+            <label for="site-name">Website Name</label>
+            <input type="text" id="site-name" class="form-control" value="Idi UBC LTD" placeholder="Enter website name">
+            <p class="text-xs text-slate-400 mt-1">This will be displayed in the header and meta tags</p>
+          </div>
+          
+          <div class="form-group">
+            <label for="site-tagline">Tagline/Slogan</label>
+            <input type="text" id="site-tagline" class="form-control" value="Web CAD & Cost Estimator" placeholder="Enter tagline">
+          </div>
+          
+          <div class="form-group">
+            <label for="company-email">Company Email</label>
+            <input type="email" id="company-email" class="form-control" value="info@idiubc.com" placeholder="Enter company email">
+          </div>
+          
+          <div class="form-group">
+            <label for="company-phone">Phone Number</label>
+            <input type="tel" id="company-phone" class="form-control" value="+234 800 000 0000" placeholder="Enter phone number">
+          </div>
+          
+          <div class="form-group">
+            <label for="company-address">Address</label>
+            <textarea id="company-address" class="textarea-control" placeholder="Enter company address">Lagos, Nigeria</textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="theme-color">Main Theme Color</label>
+            <div class="flex items-center space-x-3">
+              <input type="color" id="theme-color" value="#6366f1" class="w-10 h-10 rounded cursor-pointer">
+              <input type="text" id="theme-color-hex" class="form-control flex-1" value="#6366f1" placeholder="Enter hex color">
+            </div>
+            <p class="text-xs text-slate-400 mt-1">This color will be used for primary buttons and accents</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Homepage Content Tab (hidden initially) -->
+    <div id="homepage-tab" class="tab-content hidden">
+      <div class="glass p-6 rounded-2xl mb-6">
+        <h2 class="text-xl font-bold mb-6">Homepage Content</h2>
+        
+        <div class="space-y-6">
+          <!-- Hero Section -->
+          <div class="border-l-4 border-indigo-500 pl-4">
+            <h3 class="text-lg font-semibold mb-4">Hero Section</h3>
+            
+            <div class="form-group">
+              <label for="hero-title">Main Title</label>
+              <input type="text" id="hero-title" class="form-control" value="Design Your Dream Building Instantly" placeholder="Enter hero title">
+            </div>
+            
+            <div class="form-group">
+              <label for="hero-subtitle">Subtitle</label>
+              <textarea id="hero-subtitle" class="textarea-control" placeholder="Enter hero subtitle">Create professional architectural designs, get accurate cost estimates, and generate construction documents — all in one intuitive platform.</textarea>
+            </div>
+          </div>
+          
+          <!-- Features Section -->
+          <div class="border-l-4 border-purple-500 pl-4">
+            <h3 class="text-lg font-semibold mb-4">Features Section</h3>
+            
+            <div class="form-group">
+              <label for="features-title">Section Title</label>
+              <input type="text" id="features-title" class="form-control" value="Powerful Features" placeholder="Enter features title">
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+              <!-- Feature 1 -->
+              <div class="glass p-4 rounded-xl">
+                <h4 class="font-semibold mb-3">Feature 1</h4>
+                <div class="form-group">
+                  <label for="feature1-title">Title</label>
+                  <input type="text" id="feature1-title" class="form-control" value="Web CAD Designer" placeholder="Enter feature title">
+                </div>
+                <div class="form-group">
+                  <label for="feature1-desc">Description</label>
+                  <textarea id="feature1-desc" class="textarea-control" placeholder="Enter feature description">Drag and drop building elements, upload floor plans, or start from scratch with our intuitive canvas-based design tool.</textarea>
+                </div>
+              </div>
+              
+              <!-- Feature 2 -->
+              <div class="glass p-4 rounded-xl">
+                <h4 class="font-semibold mb-3">Feature 2</h4>
+                <div class="form-group">
+                  <label for="feature2-title">Title</label>
+                  <input type="text" id="feature2-title" class="form-control" value="Smart Cost Estimation" placeholder="Enter feature title">
+                </div>
+                <div class="form-group">
+                  <label for="feature2-desc">Description</label>
+                  <textarea id="feature2-desc" class="textarea-control" placeholder="Enter feature description">Automatically calculate material costs, labor, and overhead based on your design and real-time market prices.</textarea>
+                </div>
+              </div>
+              
+              <!-- Feature 3 -->
+              <div class="glass p-4 rounded-xl">
+                <h4 class="font-semibold mb-3">Feature 3</h4>
+                <div class="form-group">
+                  <label for="feature3-title">Title</label>
+                  <input type="text" id="feature3-title" class="form-control" value="Geospatial Intelligence" placeholder="Enter feature title">
+                </div>
+                <div class="form-group">
+                  <label for="feature3-desc">Description</label>
+                  <textarea id="feature3-desc" class="textarea-control" placeholder="Enter feature description">Integrate Google Earth Engine to analyze soil composition, climate data, and terrain characteristics for your land area.</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Testimonials Section -->
+          <div class="border-l-4 border-pink-500 pl-4">
+            <h3 class="text-lg font-semibold mb-4">Testimonials Section</h3>
+            
+            <div class="form-group">
+              <label for="testimonial-quote">Quote</label>
+              <textarea id="testimonial-quote" class="textarea-control" placeholder="Enter testimonial quote">This platform has revolutionized how we approach construction projects. The integration of CAD design with cost estimation saves us weeks of work and provides incredible accuracy.</textarea>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="form-group">
+                <label for="testimonial-author">Author</label>
+                <input type="text" id="testimonial-author" class="form-control" value="John Doe" placeholder="Enter author name">
+              </div>
+              
+              <div class="form-group">
+                <label for="testimonial-position">Position</label>
+                <input type="text" id="testimonial-position" class="form-control" value="Lead Architect at BuildRight Ltd" placeholder="Enter author position">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Page Content Tab (hidden initially) -->
+    <div id="about-tab" class="tab-content hidden">
+      <div class="glass p-6 rounded-2xl mb-6">
+        <h2 class="text-xl font-bold mb-6">About Page Content</h2>
+        
+        <div class="space-y-6">
+          <div class="form-group">
+            <label for="about-title">Page Title</label>
+            <input type="text" id="about-title" class="form-control" value="About Us" placeholder="Enter about page title">
+          </div>
+          
+          <div class="form-group">
+            <label for="about-intro">Introduction</label>
+            <textarea id="about-intro" class="textarea-control" placeholder="Enter introduction text">We are a leading construction technology company dedicated to revolutionizing the way buildings are designed and constructed.</textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="about-mission">Our Mission</label>
+            <textarea id="about-mission" class="textarea-control" placeholder="Enter mission statement">Our mission is to empower architects, builders, and homeowners with cutting-edge technology that makes construction planning accessible, accurate, and efficient.</textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="about-vision">Our Vision</label>
+            <textarea id="about-vision" class="textarea-control" placeholder="Enter vision statement">To become the world's most trusted platform for digital construction planning, setting new standards for accuracy, efficiency, and user experience.</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Page Content Tab (hidden initially) -->
+    <div id="contact-tab" class="tab-content hidden">
+      <div class="glass p-6 rounded-2xl mb-6">
+        <h2 class="text-xl font-bold mb-6">Contact Page Content</h2>
+        
+        <div class="space-y-6">
+          <div class="form-group">
+            <label for="contact-title">Page Title</label>
+            <input type="text" id="contact-title" class="form-control" value="Contact Us" placeholder="Enter contact page title">
+          </div>
+          
+          <div class="form-group">
+            <label for="contact-subtitle">Subtitle</label>
+            <input type="text" id="contact-subtitle" class="form-control" value="Get in touch with our team" placeholder="Enter contact subtitle">
+          </div>
+          
+          <div class="form-group">
+            <label for="contact-description">Description</label>
+            <textarea id="contact-description" class="textarea-control" placeholder="Enter contact description">Have questions about our platform or want to discuss a project? Our team is here to help. Fill out the form below or reach out directly through any of our contact channels.</textarea>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="form-group">
+              <label for="contact-email">Contact Email</label>
+              <input type="email" id="contact-email" class="form-control" value="info@idiubc.com" placeholder="Enter contact email">
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-phone">Contact Phone</label>
+              <input type="tel" id="contact-phone" class="form-control" value="+234 800 000 0000" placeholder="Enter contact phone">
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-address">Office Address</label>
+              <textarea id="contact-address" class="textarea-control" placeholder="Enter office address">Lagos, Nigeria</textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-hours">Business Hours</label>
+              <textarea id="contact-hours" class="textarea-control" placeholder="Enter business hours">Monday - Friday: 8:00 AM - 6:00 PM\nSaturday: 9:00 AM - 2:00 PM\nSunday: Closed</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal Pages Content Tab (hidden initially) -->
+    <div id="legal-tab" class="tab-content hidden">
+      <div class="glass p-6 rounded-2xl mb-6">
+        <h2 class="text-xl font-bold mb-6">Legal Pages Content</h2>
+        
+        <div class="space-y-6">
+          <!-- Privacy Policy -->
+          <div class="border-l-4 border-blue-500 pl-4">
+            <h3 class="text-lg font-semibold mb-4">Privacy Policy</h3>
+            <div class="form-group">
+              <label for="privacy-content">Content</label>
+              <textarea id="privacy-content" class="textarea-control" placeholder="Enter privacy policy content">Your privacy is important to us. This privacy policy explains how we collect, use, disclose, and safeguard your information when you visit our website...</textarea>
+            </div>
+          </div>
+          
+          <!-- Terms of Service -->
+          <div class="border-l-4 border-green-500 pl-4">
+            <h3 class="text-lg font-semibold mb-4">Terms of Service</h3>
+            <div class="form-group">
+              <label for="terms-content">Content</label>
+              <textarea id="terms-content" class="textarea-control" placeholder="Enter terms of service content">These terms of service govern your use of our website and services. By accessing or using our platform, you agree to be bound by these terms...</textarea>
+            </div>
+          </div>
+          
+          <!-- Cookie Policy -->
+          <div class="border-l-4 border-yellow-500 pl-4">
+            <h3 class="text-lg font-semibold mb-4">Cookie Policy</h3>
+            <div class="form-group">
+              <label for="cookie-content">Content</label>
+              <textarea id="cookie-content" class="textarea-control" placeholder="Enter cookie policy content">This cookie policy explains what cookies are, how we use them, and your choices regarding cookies. We use cookies to enhance your experience on our website...</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Update active sidebar item based on current page
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split('/').pop();
+      const sidebarItems = document.querySelectorAll('.sidebar-item');
+      
+      sidebarItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === currentPage) {
+          item.classList.add('active');
+        }
+      });
+      
+      // Tab functionality
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Update active button
+          tabButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.classList.add('inactive');
+          });
+          this.classList.remove('inactive');
+          this.classList.add('active');
+          
+          // Show corresponding content
+          const tabName = this.getAttribute('data-tab');
+          tabContents.forEach(content => {
+            content.classList.add('hidden');
+          });
+          document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+        });
+      });
+      
+      // Color picker sync
+      const colorPicker = document.getElementById('theme-color');
+      const colorHex = document.getElementById('theme-color-hex');
+      
+      colorPicker.addEventListener('input', function() {
+        colorHex.value = this.value;
+      });
+      
+      colorHex.addEventListener('input', function() {
+        if (/^#[0-9A-F]{6}$/i.test(this.value)) {
+          colorPicker.value = this.value;
+        }
+      });
+      
+      // Save button functionality
+      document.querySelector('.btn-primary').addEventListener('click', function() {
+        alert('All changes saved successfully!\nThe website content has been updated.');
+      });
+    });
+  </script>
+</body>
+</html>

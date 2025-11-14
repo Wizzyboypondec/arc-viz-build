@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Idi UBC LTD - Web CAD & Cost Estimator</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          backdropBlur: {
+            xs: '2px'
+          }
+        }
+      }
+    };
+  </script>
+  <!-- Inter Font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Animated Gradient Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.3;
+      z-index: -1;
+      animation: float 12s ease-in-out infinite;
+    }
+    
+    .blob-1 {
+      width: 300px;
+      height: 300px;
+      background-color: #6366f1; /* indigo-500 */
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background-color: #8b5cf6; /* purple-500 */
+      bottom: 20%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+    
+    .blob-3 {
+      width: 250px;
+      height: 250px;
+      background-color: #ec4899; /* pink-500 */
+      top: 60%;
+      left: 40%;
+      animation-delay: 4s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(20px, 30px) scale(1.1);
+      }
+      50% {
+        transform: translate(-20px, -30px) scale(0.9);
+      }
+      75% {
+        transform: translate(-30px, 20px) scale(1.05);
+      }
+    }
+
+    /* Glassmorphism effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    }
+
+    /* SVG Icon for Logo */
+    .logo-svg {
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen relative overflow-x-hidden">
+  <!-- Animated Background Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Fixed Navbar -->
+  <nav class="fixed top-0 w-full z-50 px-6 py-4 glass">
+    <div class="container mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <!-- Inline SVG Logo -->
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6H20M4 12H20M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="8" cy="6" r="2" fill="#6366f1"/>
+          <circle cx="16" cy="12" r="2" fill="#8b5cf6"/>
+          <circle cx="12" cy="18" r="2" fill="#ec4899"/>
+        </svg>
+        <span class="text-xl font-semibold">Idi UBC LTD</span>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#home" class="hover:text-purple-300 transition duration-300">Home</a>
+        <a href="#features" class="hover:text-purple-300 transition duration-300">Features</a>
+        <a href="#templates" class="hover:text-purple-300 transition duration-300">Templates</a>
+        <a href="#about" class="hover:text-purple-300 transition duration-300">About</a>
+        <a href="#contact" class="hover:text-purple-300 transition duration-300">Contact</a>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hidden md:flex space-x-4">
+        <button class="px-4 py-2 rounded-lg border border-white/30 hover:bg-white/20 transition duration-300">Login</button>
+        <button class="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg hover:from-indigo-600 hover:to-purple-700 transition duration-300">Get Started</button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden flex items-center">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6H20M4 12H20M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu" class="md:hidden hidden bg-slate-900/90 glass mt-2 mx-6 rounded-lg overflow-hidden">
+      <div class="flex flex-col p-4 space-y-4">
+        <a href="#home" class="py-2 hover:text-purple-300 transition duration-300">Home</a>
+        <a href="#features" class="py-2 hover:text-purple-300 transition duration-300">Features</a>
+        <a href="#templates" class="py-2 hover:text-purple-300 transition duration-300">Templates</a>
+        <a href="#about" class="py-2 hover:text-purple-300 transition duration-300">About</a>
+        <a href="#contact" class="py-2 hover:text-purple-300 transition duration-300">Contact</a>
+        <div class="pt-2 flex flex-col space-y-2">
+          <button class="w-full px-4 py-2 rounded-lg border border-white/30 hover:bg-white/20 transition duration-300">Login</button>
+          <button class="w-full px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg hover:from-indigo-600 hover:to-purple-700 transition duration-300">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-28 pb-20 px-6">
+    <div class="container mx-auto max-w-6xl">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div class="lg:w-1/2 space-y-6">
+          <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+            Design Your Dream
+            <span class="bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text"> Building Instantly</span>
+          </h1>
+          <p class="text-lg text-slate-300 leading-relaxed">
+            Create professional architectural designs, get accurate cost estimates, and generate construction documents — all in one intuitive platform.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <button class="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg hover:from-indigo-600 hover:to-purple-700 transition duration-300 font-medium">Start Designing</button>
+            <button class="px-6 py-3 border border-white/30 glass hover:bg-white/10 transition duration-300 font-medium">View Templates</button>
+          </div>
+        </div>
+
+        <!-- Floating Glass Card Visualization -->
+        <div class="lg:w-1/2 flex justify-center">
+          <div class="glass p-6 w-full max-w-md relative transform hover:scale-105 transition duration-300" style="box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+            <div class="absolute -top-3 -right-3 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Project Overview</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between">
+                <span class="text-slate-300">Land Area:</span>
+                <span class="font-medium">500 m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-300">Estimated Cost:</span>
+                <span class="font-medium">₦15,000,000</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-300">Construction Time:</span>
+                <span class="font-medium">6 months</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-300">Materials Used:</span>
+                <span class="font-medium">12 types</span>
+              </div>
+            </div>
+            <div class="mt-6">
+              <div class="w-full bg-slate-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full" style="width: 65%;"></div>
+              </div>
+              <p class="text-sm text-slate-400 mt-2">65% Complete</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="features" class="py-20 px-6">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Powerful Features</h2>
+        <p class="text-xl text-slate-300 max-w-3xl mx-auto">Everything you need to design, estimate, and build with precision and confidence.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="glass p-6 hover:transform hover:scale-105 transition duration-300" style="box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+          <div class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Web CAD Designer</h3>
+          <p class="text-slate-300">Drag and drop building elements, upload floor plans, or start from scratch with our intuitive canvas-based design tool.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass p-6 hover:transform hover:scale-105 transition duration-300" style="box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+          <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Smart Cost Estimation</h3>
+          <p class="text-slate-300">Automatically calculate material costs, labor, and overhead based on your design and real-time market prices.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass p-6 hover:transform hover:scale-105 transition duration-300" style="box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+          <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Geospatial Intelligence</h3>
+          <p class="text-slate-300">Integrate Google Earth Engine to analyze soil composition, climate data, and terrain characteristics for your land area.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 px-6 bg-slate-800/50 glass">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="text-3xl md:text-4xl font-bold text-indigo-400">10K+</p>
+          <p class="text-slate-300 mt-2">Projects Created</p>
+        </div>
+        <div>
+          <p class="text-3xl md:text-4xl font-bold text-purple-400">₦5B+</p>
+          <p class="text-slate-300 mt-2">Estimated Value</p>
+        </div>
+        <div>
+          <p class="text-3xl md:text-4xl font-bold text-pink-400">500+</p>
+          <p class="text-slate-300 mt-2">Construction Firms</p>
+        </div>
+        <div>
+          <p class="text-3xl md:text-4xl font-bold text-blue-400">98%</p>
+          <p class="text-slate-300 mt-2">Accuracy Rate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial/Community Section -->
+  <section class="py-20 px-6">
+    <div class="container mx-auto max-w-4xl">
+      <div class="glass p-8 text-center">
+        <div class="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indium-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </div>
+        <blockquote class="text-xl md:text-2xl italic text-slate-300 mb-6">This platform has revolutionized how we approach construction projects. The integration of CAD design with cost estimation saves us weeks of work and provides incredible accuracy.</blockquote>
+        <cite class="font-semibold">— John Doe, Lead Architect at BuildRight Ltd</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-800/70 glass py-12 px-6">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-3 mb-4">
+            <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6H20M4 12H20M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="8" cy="6" r="2" fill="#6366f1"/>
+              <circle cx="16" cy="12" r="2" fill="#8b5cf6"/>
+              <circle cx="12" cy="18" r="2" fill="#ec4899"/>
+            </svg>
+            <span class="text-xl font-semibold">Idi UBC LTD</span>
+          </div>
+          <p class="text-slate-300 mb-4">Your trusted partner in digital construction planning and cost estimation.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-slate-400 hover:text-white transition duration-300">Privacy Policy</a>
+            <a href="#" class="text-slate-400 hover:text-white transition duration-300">Terms of Service</a>
+            <a href="#" class="text-slate-400 hover:text-white transition duration-300">Cookie Policy</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-slate-300">
+            <li><a href="#home" class="hover:text-white transition duration-300">Home</a></li>
+            <li><a href="#features" class="hover:text-white transition duration-300">Features</a></li>
+            <li><a href="#templates" class="hover:text-white transition duration-300">Templates</a></li>
+            <li><a href="#about" class="hover:text-white transition duration-300">About Us</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2 text-slate-300">
+            <li>Email: info@idiubc.com</li>
+            <li>Phone: +234 800 000 0000</li>
+            <li>Lagos, Nigeria</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-white/20 mt-8 pt-8 text-center text-slate-400">
+        &copy; 2025 Idi UBC LTD. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

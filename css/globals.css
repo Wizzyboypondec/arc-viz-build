@@ -1,0 +1,109 @@
+/* Global Styles for Glassmorphism Theme */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Glassmorphism Base Class */
+.glass {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl shadow-lg;
+}
+
+/* Card Variants */
+.card-primary {
+  @apply glass p-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.02];
+}
+
+.card-secondary {
+  @apply glass p-4 transition-all duration-300 hover:bg-white/15;
+}
+
+/* Button Styles */
+.btn-glass {
+  @apply glass px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-xl hover:backdrop-brightness-125;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700;
+}
+
+.btn-outline {
+  @apply border border-white/30 text-white hover:bg-white/10;
+}
+
+/* Input Fields */
+.input-glass {
+  @apply glass w-full px-4 py-3 rounded-lg border-none focus:outline-none focus:ring-2 focus:ring-purple-500;
+}
+
+/* Navigation Active State */
+.nav-link.active {
+  @apply text-purple-300 font-semibold;
+}
+
+/* Animation for Blob Backgrounds */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(15px, 20px) scale(1.05);
+  }
+  50% {
+    transform: translate(-15px, -20px) scale(0.95);
+  }
+  75% {
+    transform: translate(-20px, 15px) scale(1.02);
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-transparent bg-clip-text;
+}
+
+/* Loading Spinner */
+.spinner {
+  @apply animate-spin inline-block w-6 h-6 border-2 border-current border-t-transparent rounded-full;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40 flex items-center justify-center;
+}
+
+/* Toast Notifications */
+.toast {
+  @apply glass px-4 py-3 rounded-lg shadow-2xl max-w-md;
+}
+
+/* Section Padding */
+.section-padding {
+  @apply py-20 px-6 md:py-24;
+}
+
+/* Container Max Width */
+.container {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Responsive Typography */
+h1, .text-4xl { @apply text-3xl md:text-4xl lg:text-5xl font-bold; }
+h2, .text-3xl { @apply text-2xl md:text-3xl lg:text-4xl font-bold; }
+h3, .text-2xl { @apply text-xl md:text-2xl font-semibold; }
+h4, .text-xl { @apply text-lg md:text-xl font-medium; }
+
+/* Grid Gap Consistency */
+.grid-gap { @apply grid gap-6 md:gap-8 lg:gap-10; }
+
+/* Flex Center */
+.flex-center { @apply flex items-center justify-center; }
+
+/* Hide Scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

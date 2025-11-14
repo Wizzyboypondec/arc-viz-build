@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates - Idi UBC LTD</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <!-- Inter Font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/globals.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Animated Gradient Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.3;
+      z-index: -1;
+    }
+    
+    .blob-1 {
+      width: 300px;
+      height: 300px;
+      background-color: #6366f1;
+      top: 20%;
+      left: 10%;
+      animation: float 12s ease-in-out infinite;
+    }
+    
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background-color: #8b5cf6;
+      bottom: 20%;
+      right: 15%;
+      animation: float 12s ease-in-out infinite 2s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(20px, 30px) scale(1.1);
+      }
+      50% {
+        transform: translate(-20px, -30px) scale(0.9);
+      }
+      75% {
+        transform: translate(-30px, 20px) scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen relative overflow-x-hidden">
+  <!-- Animated Background Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- Include Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- Main Content -->
+  <main class="pt-24 pb-12 px-6">
+    <div class="container mx-auto max-w-7xl">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Building Templates</h1>
+          <p class="text-xl text-slate-300">Choose from our professionally designed templates to start your project quickly.</p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+          <select id="category-filter" class="input-glass px-4 py-3 w-full sm:w-48">
+            <option value="all">All Categories</option>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+            <option value="industrial">Industrial</option>
+          </select>
+          
+          <select id="style-filter" class="input-glass px-4 py-3 w-full sm:w-48">
+            <option value="all">All Styles</option>
+            <option value="modern">Modern</option>
+            <option value="traditional">Traditional</option>
+            <option value="contemporary">Contemporary</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Templates Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Template 1 -->
+        <div class="card-primary group cursor-pointer" onclick="useTemplate('modern-villa')">
+          <img src="../assets/images/template1.jpg" alt="Modern Villa" class="w-full h-48 object-cover rounded-t-xl">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-semibold">Modern Villa</h3>
+              <span class="bg-indigo-500/20 text-indigo-300 text-xs px-2 py-1 rounded-full">Residential</span>
+            </div>
+            
+            <div class="text-slate-300 text-sm space-y-1 mb-4">
+              <div class="flex justify-between">
+                <span>Bedrooms:</span>
+                <span>3</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Bathrooms:</span>
+                <span>2</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Area:</span>
+                <span>250m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Floors:</span>
+                <span>2</span>
+              </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-4 mt-4">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">From ₦8,500,000</span>
+                <button class="btn-glass btn-outline text-sm py-2 px-4 hover:bg-white/10 transition-colors">
+                  Use Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 2 -->
+        <div class="card-primary group cursor-pointer" onclick="useTemplate('office-complex')">
+          <img src="../assets/images/template2.jpg" alt="Office Complex" class="w-full h-48 object-cover rounded-t-xl">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-semibold">Office Complex</h3>
+              <span class="bg-purple-500/20 text-purple-300 text-xs px-2 py-1 rounded-full">Commercial</span>
+            </div>
+            
+            <div class="text-slate-300 text-sm space-y-1 mb-4">
+              <div class="flex justify-between">
+                <span>Units:</span>
+                <span>12</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Area:</span>
+                <span>800m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Floors:</span>
+                <span>3</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Parking:</span>
+                <span>20 spots</span>
+              </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-4 mt-4">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">From ₦28,000,000</span>
+                <button class="btn-glass btn-outline text-sm py-2 px-4 hover:bg-white/10 transition-colors">
+                  Use Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 3 -->
+        <div class="card-primary group cursor-pointer" onclick="useTemplate('apartment-block')">
+          <img src="../assets/images/template3.jpg" alt="Apartment Block" class="w-full h-48 object-cover rounded-t-xl">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-semibold">Apartment Block</h3>
+              <span class="bg-pink-500/20 text-pink-300 text-xs px-2 py-1 rounded-full">Residential</span>
+            </div>
+            
+            <div class="text-slate-300 text-sm space-y-1 mb-4">
+              <div class="flex justify-between">
+                <span>Units:</span>
+                <span>8</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Area:</span>
+                <span>600m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Floors:</span>
+                <span>4</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Elevators:</span>
+                <span>1</span>
+              </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-4 mt-4">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">From ₦19,200,000</span>
+                <button class="btn-glass btn-outline text-sm py-2 px-4 hover:bg-white/10 transition-colors">
+                  Use Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 4 -->
+        <div class="card-primary group cursor-pointer" onclick="useTemplate('warehouse')">
+          <img src="../assets/images/template4.jpg" alt="Industrial Warehouse" class="w-full h-48 object-cover rounded-t-xl">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-semibold">Industrial Warehouse</h3>
+              <span class="bg-blue-500/20 text-blue-300 text-xs px-2 py-1 rounded-full">Industrial</span>
+            </div>
+            
+            <div class="text-slate-300 text-sm space-y-1 mb-4">
+              <div class="flex justify-between">
+                <span>Area:</span>
+                <span>1,200m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Height:</span>
+                <span>12m</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Loading Bays:</span>
+                <span>4</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Office Space:</span>
+                <span>150m²</span>
+              </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-4 mt-4">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">From ₦45,000,000</span>
+                <button class="btn-glass btn-outline text-sm py-2 px-4 hover:bg-white/10 transition-colors">
+                  Use Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 5 -->
+        <div class="card-primary group cursor-pointer" onclick="useTemplate('restaurant')">
+          <img src="../assets/images/template5.jpg" alt="Restaurant Design" class="w-full h-48 object-cover rounded-t-xl">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-semibold">Restaurant Design</h3>
+              <span class="bg-orange-500/20 text-orange-300 text-xs px-2 py-1 rounded-full">Commercial</span>
+            </div>
+            
+            <div class="text-slate-300 text-sm space-y-1 mb-4">
+              <div class="flex justify-between">
+                <span>Seating:</span>
+                <span>80 guests</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Area:</span>
+                <span>350m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Kitchen:</span>
+                <span>70m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Outdoor:</span>
+                <span>Yes</span>
+              </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-4 mt-4">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">From ₦15,800,000</span>
+                <button class="btn-glass btn-outline text-sm py-2 px-4 hover:bg-white/10 transition-colors">
+                  Use Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 6 -->
+        <div class="card-primary group cursor-pointer" onclick="useTemplate('clinic')">
+          <img src="../assets/images/template6.jpg" alt="Medical Clinic" class="w-full h-48 object-cover rounded-t-xl">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-semibold">Medical Clinic</h3>
+              <span class="bg-green-500/20 text-green-300 text-xs px-2 py-1 rounded-full">Commercial</span>
+            </div>
+            
+            <div class="text-slate-300 text-sm space-y-1 mb-4">
+              <div class="flex justify-between">
+                <span>Consulting Rooms:</span>
+                <span>6</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Area:</span>
+                <span>420m²</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Floors:</span>
+                <span>2</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Reception:</span>
+                <span>Yes</span>
+              </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-4 mt-4">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">From ₦22,500,000</span>
+                <button class="btn-glass btn-outline text-sm py-2 px-4 hover:bg-white/10 transition-colors">
+                  Use Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="mt-16 glass p-8 rounded-2xl text-center">
+        <h2 class="text-3xl font-bold mb-4">Don't see what you're looking for?</h2>
+        <p class="text-xl text-slate-300 mb-8">Our team can create a custom template tailored to your specific needs.</p>
+        <button class="btn-glass btn-primary px-8 py-4 text-lg font-medium">
+          Request Custom Template
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Include Footer -->
+  <div id="footer-container"></div>
+
+  <script>
+    // Load Navbar and Footer
+    fetch('../components/Navbar.js')
+      .then(response => response.text())
+      .then(data => {
+        const script = document.createElement('script');
+        script.textContent = data;
+        document.head.appendChild(script);
+        
+        const navbarContainer = document.getElementById('navbar-container');
+        if (typeof renderNavbar === 'function') {
+          navbarContainer.appendChild(renderNavbar());
+        }
+      });
+
+    fetch('../components/Footer.js')
+      .then(response => response.text())
+      .then(data => {
+        const script = document.createElement('script');
+        script.textContent = data;
+        document.head.appendChild(script);
+        
+        const footerContainer = document.getElementById('footer-container');
+        if (typeof renderFooter === 'function') {
+          footerContainer.appendChild(renderFooter());
+        }
+      });
+
+    function useTemplate(templateId) {
+      alert(`Using template: ${templateId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}\nYour design session will begin with this template.`);
+      // In a real app, this would redirect to the design canvas with the template loaded
+    }
+
+    // Filter functionality
+    document.getElementById('category-filter').addEventListener('change', filterTemplates);
+    document.getElementById('style-filter').addEventListener('change', filterTemplates);
+
+    function filterTemplates() {
+      const category = document.getElementById('category-filter').value;
+      const style = document.getElementById('style-filter').value;
+      
+      // In a real app, this would filter the template grid
+      console.log('Filtering by:', { category, style });
+      alert('Filter applied! In a complete app, this would show only matching templates.');
+    }
+  </script>
+</body>
+</html>
